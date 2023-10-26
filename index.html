@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Await</title>
+    </head>
+    <body>
+        <div>
+        </div>
+    </body>
+</html>
+
+
+
+<script>
+    function apiCall() {
+        console.log('3 - inside API call');
+        return 1;
+    }
+    
+    async function functionOne () {
+       await apiCall();
+       // apiCall2 would be blocked waiting for resolution of apiCall
+       // await apiCall2();
+       console.log('2 - inside function');
+    }
+
+    function functionTwo() {
+        console.log('4 - normal function');
+    }
+
+    console.log('1 - top level');
+    const result = functionOne();
+    functionTwo();
+    console.log(result.then((a) => { console.log(a) }));
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- function apiCall() {
+    console.log('3 - inside apiCall function');
+    return 1;
+}
+
+async function specialFunction() {
+    console.log('2 - inside demo function');
+    apiCall();
+    console.log('4 - inside demo function after api calls');
+    return 1;
+}
+
+function usualFunction() {
+    console.log('5 - synchronous function');
+}
+
+console.log('1 - top level');
+const specialFunctionReturn = specialFunction();
+console.log(specialFunctionReturn.then((a) => console.log(a)))
+usualFunction(); -->
+
+<!-- 
+Promise version
+
+<script>
+    async function apiCall() {
+        console.log('3 - inside apiCall function');
+        // return 1 is wrapped in a resolved promise
+        return 1;
+    }
+
+    // function marked as async, which means it will return a promise
+    function demo() {
+        console.log('2 - inside demo function');
+        apiCall().then(() => {
+            console.log('4 - inside demo function after api calls');
+        }
+        )
+    }
+
+    function normalFunction() {
+        console.log('5 - synchronous function');
+    }
+
+    document.getElementById("go").addEventListener("click", ()=> {
+        console.log('1 - inside event listener');
+        // first function call, synchronous
+        const demoReturn = demo();
+        normalFunction();
+    })
+
+</script>
+ -->
+
+<style>
+
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    * {
+        box-sizing: inherit;
+    }
+
+    p {
+        margin: 0;
+    }
+
+</style>
